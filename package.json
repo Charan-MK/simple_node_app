@@ -1,0 +1,24 @@
+{
+  "name": "simple_node_app",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon .",
+    "test": "jest --passWithNoTests --detectOpenHandles",
+    "test:coverage": "jest --passWithNoTests --detectOpenHandles --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^18.0.1",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "jest": "^30.5.2",
+    "supertest": "^7.2.2"
+  }
+}
