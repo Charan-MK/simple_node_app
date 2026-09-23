@@ -1,30 +1,39 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:22-slim'
+            reuseNode true
+        }
+    }
+
+    environment {
+        IMAGE_NAME = 'itscharanmk/simple-node-app'
+    }
 
     stages {
         stage('Install dependencies') {
-            agent {
-                docker {
-                    image 'node:22-slim'
-                    reuseNode true
-                }
-            }
             steps {
                 sh 'npm ci'
             }
         }
 
         stage('Run tests') {
-            agent {
-                docker {
-                    image 'node:22-slim'
-                    reuseNode true
-                }
-            }
             steps {
                 sh '''
                     npm run test:coverage
                 '''
+            }
+        }
+
+        stage('Build image') {
+            steps {
+                sh 'docker build -t ${IMAGE_NAME}:latest -t ${IMAGE_NAME}:${BUILD_NUMBER} .'
+            }
+        }
+
+        stage('Verify Image') {
+            steps {
+                sh 'docker images | grep simple-node-app'
             }
         }
     }
