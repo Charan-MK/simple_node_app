@@ -28,3 +28,26 @@ spec:
         envFrom:
         - secretRef:
             name: simple-node-app-env
+
+        livenessProbe:
+          httpGet:
+            path: '/health'
+            port: 4200
+          initialDelaySeconds: 30
+          periodSeconds: 30
+
+        readinessProbe:
+          httpGet:
+            path: '/health'
+            port: 4200
+          initialDelaySeconds: 30
+          periodSeconds: 300
+
+        resources:
+          requests:
+            cpu: '100m'
+            memory: '128Mi'
+
+          limits:
+            cpu: '500m'
+            memory: '512Mi'
