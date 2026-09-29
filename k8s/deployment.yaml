@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: simple-node-app
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: simple-node-app
+
+  template:
+    metadata:
+      labels:
+        app: simple-node-app
+
+    spec:
+      containers:
+      - name: simple-node-app
+        image: simple-node-app-image:latest
+        imagePullPolicy: Never
+
+        ports:
+        - containerPort: 4200
+
+        envFrom:
+        - secretRef:
+            name: simple-node-app-env
