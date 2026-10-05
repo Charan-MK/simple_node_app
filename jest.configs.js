@@ -1,19 +1,19 @@
 module.exports = {
-  collectCoverage: true,
+	collectCoverage: true,
 
-  collectCoverageFrom: [
-    "src/**/*.js",
-    "!src/index.js"
-  ],
+	collectCoverageFrom: [
+		"src/**/*.js",
+		"!src/index.js"
+	],
 
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80
-    }
-  },
+	coverageThreshold: {
+		global: {
+			branches: 80,
+			functions: 80,
+			lines: 80,
+			statements: 80
+		}
+	},
 
-  testEnvironment: "node"
+	testEnvironment: "node"
 };
